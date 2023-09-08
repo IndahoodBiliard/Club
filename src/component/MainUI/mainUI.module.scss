@@ -1,0 +1,106 @@
+@import "../../style/defaultVariable.scss";
+
+.main_ui {
+  font-family: sans-serif;
+  font-size: 16px;
+  background: #000;
+  color: #fff;
+  width: 100%;
+  min-height: 100vh;
+  * {
+    box-sizing: border-box;
+  }
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 100%;
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+    position: relative;
+    height: 60px;
+    padding: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transition: background 1.2s;
+    width: 100vw;
+    z-index: 999;
+    &.black {
+      background-color: #101110;
+      transform: matrix(1, 0, 0, 1, 0, 0);
+    }
+    &.white {
+      background: linear-gradient(
+        180deg,
+        rgba(19, 26, 32, 0.7) 0%,
+        rgba(19, 26, 32, 0) 100%
+      );
+    }
+    .logo {
+      z-index: 1001;
+      font-family: 'Interstate';
+    }
+    .burger_btn {
+      padding: 0 0 0 2px;
+      margin-left: 4px;
+      font-size: 0.75rem;
+      position: relative;
+      display: block;
+      z-index: 10000;
+      height: 12px;
+      width: 26px;
+      transition: 0.2s ease;
+      will-change: height;
+      -webkit-animation: recross 0.5s ease;
+      animation: recross 0.5s ease;
+      border: none;
+      background: none;
+      outline: none;
+      color: inherit;
+      &.close {
+        height: 20px;
+        span {
+          transform: rotate(45deg);
+          &:nth-child(2) {
+            transform: rotate(-45deg);
+          }
+        }
+      }
+      span {
+        position: absolute;
+        transform-origin: left center;
+        top: 0;
+        left: 2px;
+        display: inline-block;
+        width: 26px;
+        height: 2px;
+        background: #fff;
+        transition: transform 0.5s ease;
+        &:nth-child(2) {
+          top: inherit;
+          bottom: 0;
+        }
+      }
+    }
+  }
+  .main {
+    margin-top: 60px;
+    flex-grow: 1;
+  }
+}
+
+.repon_drawer {
+  :global(.ant-drawer-content) {
+    background-color: rgba(0,0,0,.5);
+    transform: matrix(1, 0, 0, 1, 0, 0);
+    backdrop-filter: blur(10px);
+  }
+    @media only screen and (max-width: 767.5px) {
+      :global(.ant-drawer-content-wrapper) {
+        width: 100% !important;
+      }
+  }
+}
