@@ -21,7 +21,7 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
       bodyStyle={{ padding: "64px 16px 16px 16px" }}
     >
       <Space size={24} align="start" direction="vertical">
-        <Link href="/">home ádfsg ádf sdafsad ádas dá đá á dá da s dsfgh gfsadfg hsdfgd</Link>
+        <Link href="/saringan">home ádfsg ádf sdafsad ádas dá đá á dá da s dsfgh gfsadfg hsdfgd</Link>
         <Link href="/saringan/1">home</Link>
         <Link href="/">home</Link>
         <Link href="/">home</Link>
