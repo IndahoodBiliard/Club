@@ -17,7 +17,7 @@ export default function Home() {
         className={styles.bgrCarosel}
         aria-hidden="true"
       >
-        <video data-v-6b59c062="" data-index="5" data-active="5" src={data.src} autoPlay={true} loop={true} muted={true} playsinline=""></video>
+        <video data-v-6b59c062="" data-index="5" data-active="5" src={data.src} autoPlay={true} loop={true} muted={true} playsInline={true}></video>
       </div>
     </div>
     })
