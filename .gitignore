@@ -12,6 +12,9 @@
 /.next/
 /out/
 
+# intelij
+*.idea
+
 # production
 /build
 
@@ -25,11 +28,20 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+/.history
+
+command
+.project
+.settings/.jsdtscope
+.settings/org.eclipse.wst.jsdt.ui.superType.container
+.settings/org.eclipse.wst.jsdt.ui.superType.name
+.codetogether.ignore
+next.tar.gz
