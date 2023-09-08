@@ -1,15 +1,15 @@
 export interface FoodType  {
-    id: number,
+    id: string,
     name: string
 }
 
 export const  foodListData: FoodType[] = [
     {
-        id: 1,
+        id: '1',
         name: 'asdasd'
     },
     {
-        id: 2,
+        id: '1',
         name: 'asdasd2'
     }
 ]
