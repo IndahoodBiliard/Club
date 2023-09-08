@@ -1,0 +1,75 @@
+.home_page {
+  margin-top: -60px;
+}
+.carosel_area {
+  position: relative;
+  .bgrCarosel{
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+  :global(video) {
+    min-height: 100vh;
+    min-width: 100vw;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  // .ant-carousel {
+  //   width: 100vw;
+  //   max-width: 100%;
+  //   .slick-slide {
+  //     text-align: center;
+  //     height: 31.458vw;
+  //     min-height: 31.458vw;
+  //     overflow: hidden;
+  //     .slick-track {
+  //        :global(video) {
+  //         height: 100vh;
+  //       }
+  //     }
+  //   }
+  //   .slick-dots {
+  //     right: unset;
+  //     justify-content: left;
+  //     margin-left: 5.2vw;
+  //     margin-bottom: 0;
+  //     bottom: 1.875vw;
+  //     li {
+  //       height: 0.83vw;
+  //       width: 0.83vw;
+  //       button {
+  //         height: 0.83vw;
+  //         width: 0.83vw;
+  //         border-radius: 50%;
+  //       }
+  //     }
+  //   }
+  // }
+  // .ant-carousel .slick-slide > div {
+  //   height: 100%;
+  //   & > div {
+  //     height: 100%;
+  //     position: relative;
+  //   }
+  // }
+  // .buttonMethods {
+  //   width: 100%;
+  //   display: flex;
+  //   justify-content: space-between;
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   transform: translate(-50%, -50%);
+  //   padding: 0 3.33vw;
+  //   .ant-btn-icon-only {
+  //     width: 1.875vw;
+  //     height: 1.875vw;
+  //     svg {
+  //       width: 1.875vw;
+  //       height: 1.875vw;
+  //     }
+  //   }
+  // }
+}

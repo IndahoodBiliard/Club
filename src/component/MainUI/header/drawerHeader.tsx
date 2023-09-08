@@ -15,16 +15,21 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
       open={showDrawer}
       onClose={() => setShowDrawer(false)}
       closable={false}
-      width={341}
+      width={'41.7vw'}
       zIndex={100}
       rootClassName={styles.repon_drawer}
-      bodyStyle={{ padding: "64px 16px 16px 16px" }}
+      bodyStyle={{ padding: "18px 26px 20px;" }}
     >
-      <Space size={24} align="start" direction="vertical">
-        <Link href="/saringan">home ádfsg ádf sdafsad ádas dá đá á dá da s dsfgh gfsadfg hsdfgd</Link>
-        <Link href="/saringan/1">home</Link>
-        <Link href="/">home</Link>
-        <Link href="/">home</Link>
+      <Space
+        size={10}
+        align="start"
+        direction="vertical"
+        className={styles.list_link}
+      >
+        <Link href="/saringan">The brand</Link>
+        <Link href="/saringan/1">Savoir-faire</Link>
+        <Link href="/">Collections</Link>
+        <Link href="/">Event</Link>
         <Link href="/">home</Link>
       </Space>
     </Drawer>

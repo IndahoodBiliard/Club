@@ -20,7 +20,7 @@
     justify-content: space-between;
     text-transform: uppercase;
     position: relative;
-    height: 60px;
+    height: $header-height;
     padding: 16px;
     position: fixed;
     top: 0;
@@ -41,7 +41,8 @@
     }
     .logo {
       z-index: 1001;
-      font-family: 'Interstate';
+      font-size: 24px;
+      font-family: cursive;
     }
     .burger_btn {
       padding: 0 0 0 2px;
@@ -94,13 +95,25 @@
 
 .repon_drawer {
   :global(.ant-drawer-content) {
-    background-color: rgba(0,0,0,.5);
+    background-color: rgba(0, 0, 0, 0.5);
     transform: matrix(1, 0, 0, 1, 0, 0);
     backdrop-filter: blur(10px);
   }
-    @media only screen and (max-width: 767.5px) {
-      :global(.ant-drawer-content-wrapper) {
-        width: 100% !important;
-      }
+  @media only screen and (max-width: 767.5px) {
+    :global(.ant-drawer-content-wrapper) {
+      width: 100% !important;
+    }
+  }
+  .list_link {
+    padding: 60px 0 12px 0;
+    font-size: 2.25rem;
+    line-height: 38px;
+    text-transform: uppercase;
+  }
+  @media only screen and (max-width: 767.5px) {
+    .list_link {
+      font-size: 1.375rem;
+      line-height: 24px;
+    }
   }
 }

@@ -32,7 +32,7 @@ const Header: FC = () => {
   return (
     <header className={[styles.header, headerColor].join(" ")}>
     <button className={[styles.burger_btn, showDrawer ? styles.close : ''].join(' ')} onClick={()=> setShowDrawer(!showDrawer)}><span></span> <span></span></button>
-      <div className={styles.logo}>IndaHood</div>
+      <Link href="/" className={styles.logo}>IndaHood</Link>
       <SearchButtonMobile/>
       <DrawerHeader showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
     </header>
