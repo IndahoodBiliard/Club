@@ -2,7 +2,7 @@ import { FoodType, foodListData } from '@/data/defaultData'
 export async function generateStaticParams() {
   const posts = foodListData
   return posts.map((post) => ({
-    slug: post.id,
+    id: post.id,
   }))
 }
 export default function Page({ params }: { params: { id: number} }) {
