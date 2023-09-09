@@ -4,7 +4,31 @@
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
 }
-
+.loading {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  .logo {
+    z-index: 1001;
+    font-size: 34px;
+    font-family: cursive;
+    margin-bottom: 20px;
+  }
+  :global(img) {
+    height: 20vh;
+  }
+  &.hiden {
+    display: none;
+  }
+}
 .bgrCarosel {
   scroll-snap-align: start;
   transition: opacity 0.5s ease; /* Add a transition for opacity */

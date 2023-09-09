@@ -10,13 +10,23 @@ import Icon, { DownOutlined } from "@ant-design/icons";
 export default function Home() {
   const scrollContainerRef = useRef(null);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
+  const [isLoading, setIsloading] = useState(true);
   const [progress, setProgress] = useState(0);
   let scrollTimeout: any;
+  const twoColors = { '0%': '#ffff', '100%': '#ffff' };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsloading(false)
+      setProgress(-10);
+    }, 3000);
+  }, []);
+
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current as any;
     function autoScroll() {
       setProgress(-10);
-      if (!scrollContainer) return;
+      if (!scrollContainer || isLoading) return;
       const scrollHeight = scrollContainer.scrollHeight;
       const visibleHeight = scrollContainer.clientHeight;
       const maxScrollTop = scrollHeight - visibleHeight;
@@ -44,7 +54,7 @@ export default function Home() {
       clearInterval(intervalId);
       intervalId = setInterval(autoScroll, 5000);
       clearTimeout(scrollTimeout);
-      if (!scrollContainer) return;
+      if (!scrollContainer || isLoading) return;
       // eslint-disable-next-line react-hooks/exhaustive-deps
       scrollTimeout = setTimeout(() => {
         const scrollHeight = scrollContainer.scrollHeight;
@@ -64,19 +74,18 @@ export default function Home() {
       clearInterval(intervalId);
       scrollContainer.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isLoading]);
 
   useEffect(() => {
     let interval: any;
     if (currentItemIndex < carouselHomePage.length-1) {
       interval = setInterval(() => {
-        if (progress < 99) {
+        if (progress < 100) {
           setProgress(progress + 1);
         } else {
           clearInterval(interval);
-          
         }
-      }, 30);
+      }, 35);
     }
     return () => {
       clearInterval(interval);
@@ -130,6 +139,13 @@ export default function Home() {
   return (
     <MainUi>
       <div
+        id="loading"
+        className={[styles.loading, !isLoading ?  styles.hiden : '' ].join(' ')}
+      >
+        <div className={styles.logo}>IndaHood</div>
+        <img src="/Club/loading.gif" alt="My GIF" />
+      </div>
+      <div
         id="scroll_container"
         ref={scrollContainerRef}
         className={styles.home_page}
@@ -137,12 +153,12 @@ export default function Home() {
         {renderItemCarosel()}
       </div>
       <Button type="link" onClick={() => goToNextPage()}>
-        {progress}
         <Progress
           className={styles.buttonDown}
           format={() => <DownOutlined style={{ color: "white" }} />}
           type="circle"
           percent={progress}
+          strokeColor={twoColors}
         />
       </Button>
     </MainUi>
