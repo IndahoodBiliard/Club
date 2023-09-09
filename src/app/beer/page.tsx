@@ -13,7 +13,7 @@ export default function Home() {
   useEffect(() => {
     // Lấy chiều ngang của div và hiển thị nó trong console
     if (divRef.current) {
-      const divWidth = divRef.current.clientWidth;
+      const divWidth = (divRef.current as any).clientWidth;
       setClientWidth(divWidth);
       console.log("Chiều ngang của div:", divWidth, "px");
     }
