@@ -109,5 +109,8 @@
     font-size: 2.25rem;
     line-height: 38px;
     text-transform: uppercase;
+    :global(a) {
+      color: #fff;
+    }
   }
 }

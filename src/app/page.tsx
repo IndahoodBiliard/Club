@@ -25,11 +25,11 @@ export default function Home() {
 
   const onSetFadeInItemIndex = (data: number) => {
     console.log(data);
-      !fadeInItemIndex && setFadeInItemIndex(true);
-      setTimeout(() => {
-        setCurrentItemIndex(data);
-        setFadeInItemIndex(false);
-      }, 300);
+    !fadeInItemIndex && setFadeInItemIndex(true);
+    setTimeout(() => {
+      setCurrentItemIndex(data);
+      setFadeInItemIndex(false);
+    }, 300);
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function Home() {
       const maxScrollTop = scrollHeight - visibleHeight;
       const itemHeight = visibleHeight;
       let scrollTop = scrollContainer.scrollTop;
-      if (scrollTop +1.5 > maxScrollTop) {
+      if (scrollTop + 1.5 > maxScrollTop) {
         scrollTop = 0;
         setFadeInItemIndex(false)
         clearInterval(intervalId);
@@ -78,10 +78,8 @@ export default function Home() {
         const itemHeight = visibleHeight;
         let scrollTop = scrollContainer.scrollTop;
         const newIndex = Math.floor(scrollTop / itemHeight);
-        console.log(scrollTop, maxScrollTop, newIndex);
-        
-        if (scrollTop +1.5 > maxScrollTop) scrollTop = 0;
-          onSetFadeInItemIndex(newIndex);
+        if (scrollTop + 1.5 > maxScrollTop) scrollTop = 0;
+        onSetFadeInItemIndex(newIndex);
       }, 100);
     }
     return () => {
