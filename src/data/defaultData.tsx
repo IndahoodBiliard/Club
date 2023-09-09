@@ -15,7 +15,12 @@ export const carouselHomePage : CarouselHomePageType[] = [
         name: '213412312313'
     },
     {
-        id: '1',
+        id: '2',
+        src: 'https://video.richardmille.com/tablet/header-collection-women-04_1.mp4',
+        name: '213412312313'
+    },
+    {
+        id: '3',
         src: 'https://video.richardmille.com/desktop/the-brand-history-rm-homepage.mp4',
         name: '213412312313'
     }

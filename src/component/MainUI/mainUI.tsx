@@ -5,18 +5,19 @@ import Header from './header/header';
 
 interface MainUiProps {
   children: ReactNode;
+  footer?: boolean
 }
 
-const  MainUi: FC<MainUiProps> = ({ children }) =>{
+const  MainUi: FC<MainUiProps> = ({ children, footer }) =>{
   return (
     <div className={styles.main_ui}>
       <Header/>
       <main className={styles.main}>
         {children}
       </main>
-      <footer>
+      {footer && <footer>
         <p>Footer</p>
-      </footer>
+      </footer>}
     </div>
   );
 }
