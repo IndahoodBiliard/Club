@@ -7,7 +7,9 @@ export interface CarouselHomePageType {
 }
 export interface FoodType {
   id: string;
+  src: string;
   name: string;
+  price: string;
 }
 
 export const carouselHomePage: CarouselHomePageType[] = [
@@ -34,13 +36,17 @@ export const carouselHomePage: CarouselHomePageType[] = [
   },
 ];
 
-export const foodListData: FoodType[] = [
+export const bearListData: FoodType[] = [
   {
     id: "1",
-    name: "asdasd",
+    src: 'https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo-assets/images/man-hold-beer-after1logo.jpg',
+    name: "beer1",
+    price: '12.000d'
   },
   {
     id: "2",
-    name: "asdasd2",
+    src: 'https://pepsized.com/wp-content/uploads/2018/09/beerslider/demo-assets/images/man-hold-beer-after1logo.jpg',
+    name: "beer2",
+    price: '12.000d'
   },
 ];

@@ -26,11 +26,11 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
         direction="vertical"
         className={styles.list_link}
       >
-        <Link href="/saringan">The brand</Link>
-        <Link href="/saringan/1">Savoir-faire</Link>
-        <Link href="/">Collections</Link>
-        <Link href="/">Event</Link>
-        <Link href="/">home</Link>
+        <Link href="/beer">Discount</Link>
+        <Link href="/beer">Beer</Link>
+        <Link href="/">Cocktaiils</Link>
+        <Link href="/">Milk tea</Link>
+        <Link href="/">Food</Link>
       </Space>
     </Drawer>
   );

@@ -58,14 +58,14 @@ export default function Home() {
       }
     }
 
-    let intervalId = setInterval(autoScroll, 5000);
+    let intervalId = setInterval(autoScroll, 8000);
     scrollContainer.addEventListener("scroll", handleScroll);
 
     function handleScroll() {
       setProgress(-10);
       setFadeInItemIndex(true);
       clearInterval(intervalId);
-      intervalId = setInterval(autoScroll, 5000);
+      intervalId = setInterval(autoScroll, 8000);
       clearTimeout(scrollTimeout);
       if (!scrollContainer || isLoading) return;
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -98,7 +98,7 @@ export default function Home() {
         } else {
           clearInterval(interval);
         }
-      }, 35);
+      }, 59);
     }
     return () => {
       clearInterval(interval);
