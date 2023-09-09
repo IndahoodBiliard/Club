@@ -10,22 +10,33 @@ import Icon, { DownOutlined } from "@ant-design/icons";
 export default function Home() {
   const scrollContainerRef = useRef(null);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
+  const [fadeInItemIndex, setFadeInItemIndex] = useState(false);
   const [isLoading, setIsloading] = useState(true);
   const [progress, setProgress] = useState(0);
   let scrollTimeout: any;
-  const twoColors = { '0%': '#ffff', '100%': '#ffff' };
+  const twoColors = { "0%": "#ffff", "100%": "#ffff" };
 
   useEffect(() => {
     setTimeout(() => {
-      setIsloading(false)
+      setIsloading(false);
       setProgress(-10);
     }, 3000);
   }, []);
+
+  const onSetFadeInItemIndex = (data: number) => {
+    console.log(data);
+      !fadeInItemIndex && setFadeInItemIndex(true);
+      setTimeout(() => {
+        setCurrentItemIndex(data);
+        setFadeInItemIndex(false);
+      }, 300);
+  };
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current as any;
     function autoScroll() {
       setProgress(-10);
+      setFadeInItemIndex(true);
       if (!scrollContainer || isLoading) return;
       const scrollHeight = scrollContainer.scrollHeight;
       const visibleHeight = scrollContainer.clientHeight;
@@ -34,6 +45,7 @@ export default function Home() {
       let scrollTop = scrollContainer.scrollTop;
       if (scrollTop === maxScrollTop) {
         scrollTop = 0;
+        setFadeInItemIndex(false)
       } else {
         scrollTop += visibleHeight;
         scrollContainer.scrollTo({
@@ -41,7 +53,7 @@ export default function Home() {
           behavior: "smooth",
         });
         const newIndex = Math.floor(scrollTop / itemHeight);
-        setCurrentItemIndex(newIndex);
+        onSetFadeInItemIndex(newIndex);
         console.log("autoScroll", newIndex);
       }
     }
@@ -51,6 +63,7 @@ export default function Home() {
 
     function handleScroll() {
       setProgress(-10);
+      setFadeInItemIndex(true);
       clearInterval(intervalId);
       intervalId = setInterval(autoScroll, 5000);
       clearTimeout(scrollTimeout);
@@ -62,13 +75,13 @@ export default function Home() {
         const maxScrollTop = scrollHeight - visibleHeight;
         const itemHeight = visibleHeight;
         let scrollTop = scrollContainer.scrollTop;
+        const newIndex = Math.floor(scrollTop / itemHeight);
+        onSetFadeInItemIndex(newIndex);
         if (scrollTop === maxScrollTop) {
           scrollTop = 0;
         } else {
-          const newIndex = Math.floor(scrollTop / itemHeight);
-          setCurrentItemIndex(newIndex);
         }
-      }, 500);
+      }, 100);
     }
     return () => {
       clearInterval(intervalId);
@@ -78,7 +91,7 @@ export default function Home() {
 
   useEffect(() => {
     let interval: any;
-    if (currentItemIndex < carouselHomePage.length-1) {
+    if (currentItemIndex < carouselHomePage.length - 1) {
       interval = setInterval(() => {
         if (progress < 100) {
           setProgress(progress + 1);
@@ -105,11 +118,7 @@ export default function Home() {
         top: nextPageIndex * visibleHeight,
         behavior: "smooth",
       });
-
-      // Wait for the scrolling to complete and then update the page index
-      setTimeout(() => {
-        setCurrentItemIndex(nextPageIndex);
-      }, 500); // Adjust the delay as needed
+      onSetFadeInItemIndex(nextPageIndex);
     }
   }
 
@@ -140,7 +149,7 @@ export default function Home() {
     <MainUi>
       <div
         id="loading"
-        className={[styles.loading, !isLoading ?  styles.hiden : '' ].join(' ')}
+        className={[styles.loading, !isLoading ? styles.hiden : ""].join(" ")}
       >
         <div className={styles.logo}>IndaHood</div>
         <img src="/Club/loading.gif" alt="My GIF" />
@@ -152,15 +161,43 @@ export default function Home() {
       >
         {renderItemCarosel()}
       </div>
-      <Button type="link" onClick={() => goToNextPage()}>
+      <div className={styles.Content}>
+        <p
+          className={[
+            styles.home__subtitle,
+            styles.hone_text,
+            fadeInItemIndex ? styles["fade-in-animation"] : "",
+          ].join(" ")}
+        >
+          {carouselHomePage[currentItemIndex].subtitle}
+        </p>
+        <h2
+          className={[
+            styles.home__title,
+            styles.hone_text,
+            fadeInItemIndex ? styles["fade-in-animation"] : "",
+          ].join(" ")}
+        >
+          {carouselHomePage[currentItemIndex].title}
+        </h2>
+        <div
+          className={[
+            styles.home__desc,
+            styles.hone_text,
+            fadeInItemIndex ? styles["fade-in-animation"] : "",
+          ].join(" ")}
+        >
+          {carouselHomePage[currentItemIndex].desc}
+        </div>
+      </div>
+      <div className={styles.buttonDown} onClick={() => goToNextPage()}>
         <Progress
-          className={styles.buttonDown}
           format={() => <DownOutlined style={{ color: "white" }} />}
           type="circle"
           percent={progress}
           strokeColor={twoColors}
         />
-      </Button>
+      </div>
     </MainUi>
   );
 }
