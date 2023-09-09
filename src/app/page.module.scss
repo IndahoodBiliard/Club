@@ -33,7 +33,7 @@
   scroll-snap-align: start;
   transition: opacity 0.5s ease; /* Add a transition for opacity */
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   overflow: hidden;
   transform: matrix(1, 0, 0, 1, 0, 0);

@@ -36,16 +36,18 @@ export default function Home() {
     const scrollContainer = scrollContainerRef.current as any;
     function autoScroll() {
       setProgress(-10);
-      setFadeInItemIndex(true);
       if (!scrollContainer || isLoading) return;
+      if (carouselHomePage.length - 1 === currentItemIndex) clearInterval(intervalId);
+      setFadeInItemIndex(true);
       const scrollHeight = scrollContainer.scrollHeight;
       const visibleHeight = scrollContainer.clientHeight;
       const maxScrollTop = scrollHeight - visibleHeight;
       const itemHeight = visibleHeight;
       let scrollTop = scrollContainer.scrollTop;
-      if (scrollTop === maxScrollTop) {
+      if (scrollTop +1.5 > maxScrollTop) {
         scrollTop = 0;
         setFadeInItemIndex(false)
+        clearInterval(intervalId);
       } else {
         scrollTop += visibleHeight;
         scrollContainer.scrollTo({
@@ -76,11 +78,10 @@ export default function Home() {
         const itemHeight = visibleHeight;
         let scrollTop = scrollContainer.scrollTop;
         const newIndex = Math.floor(scrollTop / itemHeight);
-        onSetFadeInItemIndex(newIndex);
-        if (scrollTop === maxScrollTop) {
-          scrollTop = 0;
-        } else {
-        }
+        console.log(scrollTop, maxScrollTop, newIndex);
+        
+        if (scrollTop +1.5 > maxScrollTop) scrollTop = 0;
+          onSetFadeInItemIndex(newIndex);
       }, 100);
     }
     return () => {
@@ -108,11 +109,9 @@ export default function Home() {
   function goToNextPage() {
     const scrollContainer = scrollContainerRef.current as any;
 
-    if (!scrollContainer) return;
-
+    if (!scrollContainer || carouselHomePage.length - 1 === currentItemIndex) return;
     const visibleHeight = scrollContainer.clientHeight;
     const nextPageIndex = currentItemIndex + 1;
-
     if (nextPageIndex * visibleHeight < scrollContainer.scrollHeight) {
       scrollContainer.scrollTo({
         top: nextPageIndex * visibleHeight,
