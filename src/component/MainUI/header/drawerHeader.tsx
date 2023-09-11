@@ -1,7 +1,13 @@
 import React, { FC } from "react";
 import Link from "next/link";
-import { Avatar, Button, Drawer, Space } from "antd";
+import { Drawer, Space } from "antd";
 import styles from "../mainUI.module.scss";
+import {
+  DownOutlined,
+  FacebookOutlined,
+  InstagramOutlined,
+  YoutubeOutlined,
+} from "@ant-design/icons";
 
 type Props = {
   showDrawer: boolean;
@@ -15,23 +21,45 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
       open={showDrawer}
       onClose={() => setShowDrawer(false)}
       closable={false}
-      width={'41.7vw'}
+      width={"41.7vw"}
       zIndex={100}
       rootClassName={styles.repon_drawer}
       bodyStyle={{ padding: "18px 26px 20px;" }}
     >
-      <Space
-        size={10}
-        align="start"
-        direction="vertical"
-        className={styles.list_link}
-      >
-        <Link href="/beer">Discount</Link>
-        <Link href="/beer">Beer</Link>
-        <Link href="/">Cocktaiils</Link>
-        <Link href="/">Milk tea</Link>
-        <Link href="/">Food</Link>
-      </Space>
+      <div className={styles.sidebar_area}>
+        <Space
+          size={10}
+          align="start"
+          direction="vertical"
+          className={styles.list_link}
+        >
+          <Link href="/beer">Discount</Link>
+          <Link href="/beer">Beer</Link>
+          <Link href="/">Cocktaiils</Link>
+          <Link href="/">Milk tea</Link>
+          <Link href="/">Food</Link>
+        </Space>
+        <Space className={styles.sidebar_social}>
+          <a
+            href="https://www.facebook.com/IndahoodBiliardClubQ6"
+            target="_blank"
+          >
+            <FacebookOutlined />
+          </a>
+          <a
+            href=" https://www.instagram.com/indahood_club_"
+            target="_blank"
+          >
+            <InstagramOutlined />
+          </a>
+          <a
+            href=" https://www.youtube.com/channel/UCeUIF6N7p9Zsb-UaRBucrqw"
+            target="_blank"
+          >
+            <YoutubeOutlined />
+          </a>
+        </Space>
+      </div>
     </Drawer>
   );
 };

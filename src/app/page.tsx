@@ -1,11 +1,10 @@
 "use client";
-import Link from "next/link";
 import MainUi from "@/component/MainUI/mainUI";
 import styles from "./page.module.scss";
-import { Button, Carousel, Progress } from "antd";
+import { Progress } from "antd";
 import { useEffect, useRef, useState } from "react";
-import { carouselHomePage, CarouselHomePageType } from "@/data/defaultData";
-import Icon, { DownOutlined } from "@ant-design/icons";
+import { carouselHomePage } from "@/data/defaultData";
+import { DownOutlined } from "@ant-design/icons";
 
 export default function Home() {
   const scrollContainerRef = useRef(null);
@@ -16,6 +15,7 @@ export default function Home() {
   let scrollTimeout: any;
   const twoColors = { "0%": "#ffff", "100%": "#ffff" };
 
+  //loading 3s
   useEffect(() => {
     setTimeout(() => {
       setIsloading(false);
@@ -23,7 +23,7 @@ export default function Home() {
     }, 3000);
   }, []);
 
-  const onSetFadeInItemIndex = (data: number) => {
+  const onSetCurrentItemIndex = (data: number) => {
     console.log(data);
     !fadeInItemIndex && setFadeInItemIndex(true);
     setTimeout(() => {
@@ -37,7 +37,8 @@ export default function Home() {
     function autoScroll() {
       setProgress(-10);
       if (!scrollContainer || isLoading) return;
-      if (carouselHomePage.length - 1 === currentItemIndex) clearInterval(intervalId);
+      if (carouselHomePage.length - 1 === currentItemIndex)
+        clearInterval(intervalId);
       setFadeInItemIndex(true);
       const scrollHeight = scrollContainer.scrollHeight;
       const visibleHeight = scrollContainer.clientHeight;
@@ -46,7 +47,7 @@ export default function Home() {
       let scrollTop = scrollContainer.scrollTop;
       if (scrollTop + 1.5 > maxScrollTop) {
         scrollTop = 0;
-        setFadeInItemIndex(false)
+        setFadeInItemIndex(false);
         clearInterval(intervalId);
       } else {
         scrollTop += visibleHeight;
@@ -55,8 +56,7 @@ export default function Home() {
           behavior: "smooth",
         });
         const newIndex = Math.floor(scrollTop / itemHeight);
-        onSetFadeInItemIndex(newIndex);
-        console.log("autoScroll", newIndex);
+        onSetCurrentItemIndex(newIndex);
       }
     }
 
@@ -79,7 +79,7 @@ export default function Home() {
         let scrollTop = scrollContainer.scrollTop;
         const newIndex = Math.floor(scrollTop / itemHeight);
         if (scrollTop + 1.5 > maxScrollTop) scrollTop = 0;
-        onSetFadeInItemIndex(newIndex);
+        onSetCurrentItemIndex(newIndex);
       }, 100);
     }
     return () => {
@@ -107,7 +107,8 @@ export default function Home() {
   function goToNextPage() {
     const scrollContainer = scrollContainerRef.current as any;
 
-    if (!scrollContainer || carouselHomePage.length - 1 === currentItemIndex) return;
+    if (!scrollContainer || carouselHomePage.length - 1 === currentItemIndex)
+      return;
     const visibleHeight = scrollContainer.clientHeight;
     const nextPageIndex = currentItemIndex + 1;
     if (nextPageIndex * visibleHeight < scrollContainer.scrollHeight) {
@@ -115,7 +116,7 @@ export default function Home() {
         top: nextPageIndex * visibleHeight,
         behavior: "smooth",
       });
-      onSetFadeInItemIndex(nextPageIndex);
+      onSetCurrentItemIndex(nextPageIndex);
     }
   }
 

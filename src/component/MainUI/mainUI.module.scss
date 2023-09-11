@@ -104,13 +104,39 @@
       width: 100% !important;
     }
   }
-  .list_link {
-    padding: 60px 0 12px 0;
-    font-size: 2.25rem;
-    line-height: 38px;
-    text-transform: uppercase;
-    :global(a) {
-      color: #fff;
+  .sidebar_area {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    .list_link {
+      padding: 60px 0 12px 0;
+      font-size: 2.25rem;
+      line-height: 38px;
+      text-transform: uppercase;
+      :global(a) {
+        color: #fff;
+      }
+    }
+    .sidebar_social {
+      padding-bottom: 20px;
+      :global(a) {
+        :global(svg) {
+          width: 15px;
+          height: 15px;
+        }
+      }
     }
   }
 }
+
+// @media (orientation: portrait) {
+//   body {
+//     width: 100vh;
+//     -webkit-transform: rotate(-90deg);
+//     -moz-transform: rotate(-90deg);
+//     -o-transform: rotate(-90deg);
+//     -ms-transform: rotate(-90deg);
+//     transform: rotate(-90deg);
+//   }
+// }
