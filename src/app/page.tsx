@@ -2,7 +2,7 @@
 import MainUi from "@/component/MainUI/mainUI";
 import styles from "./page.module.scss";
 import { Progress } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { carouselHomePage } from "@/data/defaultData";
 import { DownOutlined } from "@ant-design/icons";
 
@@ -12,7 +12,6 @@ export default function Home() {
   const [fadeInItemIndex, setFadeInItemIndex] = useState(false);
   const [isLoading, setIsloading] = useState(true);
   const [progress, setProgress] = useState(0);
-  let scrollTimeout: any;
   const twoColors = { "0%": "#ffff", "100%": "#ffff" };
 
   //loading 3s
@@ -23,74 +22,67 @@ export default function Home() {
     }, 3000);
   }, []);
 
-  const onSetCurrentItemIndex = (data: number) => {
-    console.log(data);
-    !fadeInItemIndex && setFadeInItemIndex(true);
-    setTimeout(() => {
-      setCurrentItemIndex(data);
-      setFadeInItemIndex(false);
-    }, 300);
-  };
+  const onSetCurrentItemIndex = useCallback(
+    (data: number) => {
+      !fadeInItemIndex && setFadeInItemIndex(true);
+      setTimeout(() => {
+        setCurrentItemIndex(data);
+        setFadeInItemIndex(false);
+      }, 300);
+    },
+    [fadeInItemIndex]
+  );
+
+  const goToNextPage = useCallback(
+    (index: number) => {
+      const scrollContainer = scrollContainerRef.current as any;
+      if (
+        !scrollContainer ||
+        isLoading ||
+        carouselHomePage.length - 1 === index
+      )
+        return;
+      const visibleHeight = scrollContainer.clientHeight;
+      const nextPageIndex = index + 1;
+      if (nextPageIndex < carouselHomePage.length) {
+        onSetCurrentItemIndex(nextPageIndex);
+        scrollContainer.scrollTo({
+          top: nextPageIndex * visibleHeight,
+          behavior: "smooth",
+        });
+      }
+    },
+    [isLoading, onSetCurrentItemIndex]
+  );
 
   useEffect(() => {
     const scrollContainer = scrollContainerRef.current as any;
     function autoScroll() {
-      setProgress(-10);
-      if (!scrollContainer || isLoading) return;
-      if (carouselHomePage.length - 1 === currentItemIndex)
-        clearInterval(intervalId);
-      setFadeInItemIndex(true);
-      const scrollHeight = scrollContainer.scrollHeight;
-      const visibleHeight = scrollContainer.clientHeight;
-      const maxScrollTop = scrollHeight - visibleHeight;
-      const itemHeight = visibleHeight;
-      let scrollTop = scrollContainer.scrollTop;
-      if (scrollTop + 1.5 > maxScrollTop) {
-        scrollTop = 0;
-        setFadeInItemIndex(false);
-        clearInterval(intervalId);
-      } else {
-        scrollTop += visibleHeight;
-        scrollContainer.scrollTo({
-          top: scrollTop,
-          behavior: "smooth",
-        });
-        const newIndex = Math.floor(scrollTop / itemHeight);
-        onSetCurrentItemIndex(newIndex);
-      }
+      goToNextPage(currentItemIndex);
     }
-
-    let intervalId = setInterval(autoScroll, 8000);
-    scrollContainer.addEventListener("scroll", handleScroll);
-
     function handleScroll() {
       setProgress(-10);
       setFadeInItemIndex(true);
       clearInterval(intervalId);
-      intervalId = setInterval(autoScroll, 8000);
-      clearTimeout(scrollTimeout);
-      if (!scrollContainer || isLoading) return;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      scrollTimeout = setTimeout(() => {
-        const scrollHeight = scrollContainer.scrollHeight;
-        const visibleHeight = scrollContainer.clientHeight;
-        const maxScrollTop = scrollHeight - visibleHeight;
-        const itemHeight = visibleHeight;
-        let scrollTop = scrollContainer.scrollTop;
-        const newIndex = Math.floor(scrollTop / itemHeight);
-        if (scrollTop + 1.5 > maxScrollTop) scrollTop = 0;
-        onSetCurrentItemIndex(newIndex);
-      }, 100);
+      let scrollTop = scrollContainer.scrollTop;
+      const visibleHeight = scrollContainer.clientHeight as number;
+      let itemScroolTo = Math.floor(scrollTop / visibleHeight);
+      if (scrollTop === itemScroolTo * visibleHeight) {
+        intervalId = setInterval(autoScroll, 8000);
+        onSetCurrentItemIndex(itemScroolTo);
+      }
     }
+    let intervalId = setInterval(autoScroll, 8000);
+    scrollContainer.addEventListener("scroll", handleScroll);
     return () => {
       clearInterval(intervalId);
       scrollContainer.removeEventListener("scroll", handleScroll);
     };
-  }, [isLoading]);
+  }, [currentItemIndex, goToNextPage, onSetCurrentItemIndex]);
 
   useEffect(() => {
     let interval: any;
-    if (currentItemIndex < carouselHomePage.length - 1) {
+    if (currentItemIndex < carouselHomePage.length - 1 && !fadeInItemIndex) {
       interval = setInterval(() => {
         if (progress < 100) {
           setProgress(progress + 1);
@@ -102,23 +94,7 @@ export default function Home() {
     return () => {
       clearInterval(interval);
     };
-  }, [currentItemIndex, progress]);
-
-  function goToNextPage() {
-    const scrollContainer = scrollContainerRef.current as any;
-
-    if (!scrollContainer || carouselHomePage.length - 1 === currentItemIndex)
-      return;
-    const visibleHeight = scrollContainer.clientHeight;
-    const nextPageIndex = currentItemIndex + 1;
-    if (nextPageIndex * visibleHeight < scrollContainer.scrollHeight) {
-      scrollContainer.scrollTo({
-        top: nextPageIndex * visibleHeight,
-        behavior: "smooth",
-      });
-      onSetCurrentItemIndex(nextPageIndex);
-    }
-  }
+  }, [currentItemIndex, fadeInItemIndex, progress]);
 
   const renderItemCarosel = () => {
     return carouselHomePage.map((data) => {
@@ -188,7 +164,10 @@ export default function Home() {
           {carouselHomePage[currentItemIndex].desc}
         </div>
       </div>
-      <div className={styles.buttonDown} onClick={() => goToNextPage()}>
+      <div
+        className={styles.buttonDown}
+        onClick={() => goToNextPage(currentItemIndex)}
+      >
         <Progress
           format={() => <DownOutlined style={{ color: "white" }} />}
           type="circle"
