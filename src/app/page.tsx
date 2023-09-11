@@ -67,7 +67,7 @@ export default function Home() {
       let scrollTop = scrollContainer.scrollTop;
       const visibleHeight = scrollContainer.clientHeight as number;
       let itemScroolTo = Math.floor(scrollTop / visibleHeight);
-      if (scrollTop === itemScroolTo * window.innerHeight) {
+      if (Math.abs(scrollTop - itemScroolTo * visibleHeight) <= 5) {
         intervalId = setInterval(autoScroll, 8000);
         onSetCurrentItemIndex(itemScroolTo);
       }
