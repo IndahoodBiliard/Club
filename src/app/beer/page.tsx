@@ -87,8 +87,8 @@ export default function Home() {
       <div className={styles.beer}>
         <div className={styles.anchor_listMenu}>
           <Anchor
-            // bounds={40}
-            targetOffset={100}
+            // bounds={20}
+            targetOffset={80}
             direction="horizontal"
             items={dataListMenu.map(({ title, key }) => ({
               title,
@@ -97,9 +97,9 @@ export default function Home() {
             }))}
           />
         </div>
-        <Space size={12} direction="vertical" style={{ width: "100%" }} className={styles.dataListMenu}>
+        <div style={{ width: "100%" }} className={styles.dataListMenu}>
           {renderListMenu()}
-        </Space>
+        </div>
       </div>
     </MainUi>
   );

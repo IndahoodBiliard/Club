@@ -38,8 +38,13 @@
       }
     }
   }
-  .dataListMenu > :first-child {
-    padding-top: 40px;
+  .dataListMenu {
+    &>* {
+      padding-top: 20px;
+    }
+    &>:first-child {
+      padding-top: 40px;
+    }
   }
   .areaData {
     .custom_div {
