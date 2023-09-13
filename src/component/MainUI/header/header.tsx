@@ -8,31 +8,45 @@ import DrawerHeader from "./drawerHeader";
 import SearchButtonMobile from "./searchButtonForMobile";
 
 type Props = {
-  showDrawer: boolean;
-  setShowDrawer: React.Dispatch<React.SetStateAction<boolean>>;
+  headerType?: "black";
 };
 
-const Header: FC = () => {
+const Header: FC<Props> = ({ headerType }) => {
   const [headerColor, setHeaderColor] = useState<string>(styles.white);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
 
   const listenScrollEvent = () => {
-    if (window.scrollY > 50) {
+    if (headerType) {
+      setHeaderColor(styles.black);
+    } else if (window.scrollY > 50) {
       setHeaderColor(styles.black);
     } else {
       setHeaderColor(styles.white);
     }
   };
-  
+
   useEffect(() => {
     window.addEventListener("scroll", listenScrollEvent);
   }, []);
 
   return (
-    <header className={[styles.header, headerColor].join(" ")}>
-    <button className={[styles.burger_btn, showDrawer ? styles.close : ''].join(' ')} onClick={()=> setShowDrawer(!showDrawer)}><span></span> <span></span></button>
-      <Link href="/" className={styles.logo}>IndaHood</Link>
+    <header
+      className={[styles.header, headerType ? styles.black : headerColor].join(
+        " "
+      )}
+    >
+      <button
+        className={[styles.burger_btn, showDrawer ? styles.close : ""].join(
+          " "
+        )}
+        onClick={() => setShowDrawer(!showDrawer)}
+      >
+        <span></span> <span></span>
+      </button>
+      <Link href="/" className={styles.logo}>
+        IndaHood
+      </Link>
       {/* <SearchButtonMobile/> */}
       s
       <DrawerHeader showDrawer={showDrawer} setShowDrawer={setShowDrawer} />

@@ -5,13 +5,14 @@ import Header from './header/header';
 
 interface MainUiProps {
   children: ReactNode;
+  headerType?: 'black';
   footer?: boolean
 }
 
-const  MainUi: FC<MainUiProps> = ({ children, footer }) =>{
+const  MainUi: FC<MainUiProps> = ({ children, footer, headerType}) =>{
   return (
     <div className={styles.main_ui}>
-      <Header/>
+      <Header headerType={headerType}/>
       <main className={styles.main}>
         {children}
       </main>
