@@ -1,10 +1,9 @@
 "use client";
-import MainUi from "@/component/MainUI/mainUI";
 import { dataListMenu, bearListData } from "@/data/defaultData";
-import { Anchor, Col, Divider, Image, Row, Space } from "antd";
+import { Anchor, Col, Divider, Row, Space } from "antd";
 import { useEffect, useRef, useState } from "react";
 import styles from "./beer.module.scss";
-
+import Image from "next/image";
 export default function Home() {
   const divRef = useRef(null);
   const [clientWidth, setClientWidth] = useState(0);
@@ -20,9 +19,7 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const activeLink = document.querySelector(".ant-anchor-link-active");
-      const container = document.querySelector(
-        ".ant-anchor"
-      );
+      const container = document.querySelector(".ant-anchor");
       if (activeLink && container) {
         const containerWidth = container.clientWidth;
         const activeLinkOffset = (activeLink as any).offsetLeft;
@@ -68,9 +65,11 @@ export default function Home() {
         <Col key={data.id} xs={24} md={6} className={styles.areaData}>
           <div ref={divRef} className={styles.custom_div}>
             <Image
-              width={"100%"}
+              width={clientWidth}
               height={(clientWidth * 2) / 4}
               src={data.src}
+              alt="description of image"
+              style={{ width: "100%", height: "auto" }}
             />
           </div>
           <Space size={10} direction="vertical" className={styles.showContent}>
@@ -83,24 +82,24 @@ export default function Home() {
   };
 
   return (
-    <MainUi headerType="black">
-      <div className={styles.beer}>
-        <div className={styles.anchor_listMenu}>
-          <Anchor
-            // bounds={20}
-            targetOffset={80}
-            direction="horizontal"
-            items={dataListMenu.map(({ title, key }) => ({
-              title,
-              key,
-              href: `#${key}`,
-            }))}
-          />
-        </div>
-        <div style={{ width: "100%" }} className={styles.dataListMenu}>
-          {renderListMenu()}
-        </div>
+    <div className={styles.beer}>
+      <div className={styles.anchor_listMenu}>
+        <Anchor
+          // affix={false}
+          bounds={80}
+          offsetTop={0}
+          targetOffset={80}
+          direction="horizontal"
+          items={dataListMenu.map(({ title, key }) => ({
+            title,
+            key,
+            href: `#${key}`,
+          }))}
+        />
       </div>
-    </MainUi>
+      <div style={{ width: "100%" }} className={styles.dataListMenu}>
+        {renderListMenu()}
+      </div>
+    </div>
   );
 }

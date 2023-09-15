@@ -1,8 +1,7 @@
 "use client";
-import MainUi from "@/component/MainUI/mainUI";
 import styles from "./page.module.scss";
 import { Progress } from "antd";
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { carouselHomePage } from "@/data/defaultData";
 import { DownOutlined } from "@ant-design/icons";
 
@@ -13,7 +12,6 @@ export default function Home() {
   const [isLoading, setIsloading] = useState(true);
   const [progress, setProgress] = useState(0);
   const twoColors = { "0%": "#ffff", "100%": "#ffff" };
-
   //loading 3s
   useEffect(() => {
     setTimeout(() => {
@@ -73,10 +71,10 @@ export default function Home() {
       }
     }
     let intervalId = setInterval(autoScroll, 8000);
-    scrollContainer.addEventListener("scroll", handleScroll);
+    scrollContainer?.addEventListener("scroll", handleScroll);
     return () => {
       clearInterval(intervalId);
-      scrollContainer.removeEventListener("scroll", handleScroll);
+      scrollContainer?.removeEventListener("scroll", handleScroll);
     };
   }, [currentItemIndex, goToNextPage, onSetCurrentItemIndex]);
 
@@ -120,7 +118,7 @@ export default function Home() {
   };
 
   return (
-    <MainUi>
+    <>
       <div
         id="loading"
         className={[styles.loading, !isLoading ? styles.hiden : ""].join(" ")}
@@ -175,6 +173,6 @@ export default function Home() {
           strokeColor={twoColors}
         />
       </div>
-    </MainUi>
+    </>
   );
 }

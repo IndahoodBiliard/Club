@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import Link from "next/link";
 import { Drawer, Space } from "antd";
-import styles from "../mainUI.module.scss";
+import styles from "./header.module.scss";
 import {
-  DownOutlined,
   FacebookOutlined,
   InstagramOutlined,
   YoutubeOutlined,
 } from "@ant-design/icons";
+import { dataListMenu } from "@/data/defaultData";
 
 type Props = {
   showDrawer: boolean;
@@ -15,6 +15,17 @@ type Props = {
 };
 
 const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
+  const renderLink = () => {
+    return dataListMenu.map((item) => (
+      <Link
+        onClick={() => setShowDrawer(false)}
+        key={item.key}
+        href={`/beer#${item.key}`}
+      >
+        {item.title}
+      </Link>
+    ));
+  };
   return (
     <Drawer
       placement="left"
@@ -24,7 +35,7 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
       width={"41.7vw"}
       zIndex={100}
       rootClassName={styles.repon_drawer}
-      bodyStyle={{ padding: "18px 26px 20px;" }}
+      bodyStyle={{ padding: "18px 26px 20px" }}
     >
       <div className={styles.sidebar_area}>
         <Space
@@ -33,11 +44,7 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
           direction="vertical"
           className={styles.list_link}
         >
-          <Link href="/beer">Discount</Link>
-          <Link href="/beer">Beer</Link>
-          <Link href="/">Cocktaiils</Link>
-          <Link href="/">Milk tea</Link>
-          <Link href="/">Food</Link>
+          {renderLink()}
         </Space>
         <Space className={styles.sidebar_social}>
           <a
@@ -46,10 +53,7 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
           >
             <FacebookOutlined />
           </a>
-          <a
-            href=" https://www.instagram.com/indahood_club_"
-            target="_blank"
-          >
+          <a href=" https://www.instagram.com/indahood_club_" target="_blank">
             <InstagramOutlined />
           </a>
           <a

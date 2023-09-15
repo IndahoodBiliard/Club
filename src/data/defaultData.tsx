@@ -83,31 +83,31 @@ export const dataListMenu = [
   {
     key: 'cocktaiils',
     title: 'Cocktaiils',
-    href: '/beer',
+    href: '/cocktaiils',
     data: bearListData
   },
   {
     key: 'milktea',
     title: 'Milk tea',
-    href: '/beer',
+    href: '/milktea',
     data: bearListData
   },
   {
     key: 'food',
     title: 'Food',
-    href: '/beer',
+    href: '/food',
     data: bearListData
   },
   {
     key: 'food23',
-    title: ' Foodddddddđấ s',
-    href: '/beer',
+    title: 'food2',
+    href: '/food23',
     data: bearListData
   },
   {
     key: 'food33',
-    title: 'Food',
-    href: '/beer',
+    title: 'Food22',
+    href: '/food33',
     data: bearListData
   }
 ]

@@ -2,10 +2,8 @@
 
 import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
-import { Avatar, Button, Drawer, Space } from "antd";
-import styles from "../mainUI.module.scss";
+import styles from "./header.module.scss";
 import DrawerHeader from "./drawerHeader";
-import SearchButtonMobile from "./searchButtonForMobile";
 
 type Props = {
   headerType?: "black";
