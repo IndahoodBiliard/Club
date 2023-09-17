@@ -19,8 +19,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={styles.main_ui}>
-          <Header />
-          <main className={styles.main}>{children}</main>
+        <Header />
+        <main className={styles.main}>
+          {/* <Suspense fallback={<Loading />}>{children}</Suspense> */}
+          {children}
+        </main>
       </body>
     </html>
   );

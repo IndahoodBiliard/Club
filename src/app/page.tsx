@@ -123,8 +123,8 @@ export default function Home() {
         id="loading"
         className={[styles.loading, !isLoading ? styles.hiden : ""].join(" ")}
       >
-        <div className={styles.logo}>IndaHood</div>
-        <img src="/Club/loading.gif" alt="My GIF" />
+        <img src="/Club/logomain.png" alt="logo" />
+        {/* <img src="/Club/loading.gif" alt="My GIF" /> */}
       </div>
       <div
         id="scroll_container"

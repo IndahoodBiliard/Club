@@ -22,7 +22,7 @@
       display: flex;
       justify-content: end;
       padding-inline: $main_padding;
-      background-color: #101110;
+      background-color: #000000;
       transform: matrix(1, 0, 0, 1, 0, 0);
     }
     :global(.ant-anchor .ant-anchor-ink) {
@@ -40,11 +40,12 @@
   }
   .dataListMenu {
     &>* {
-      padding-top: 20px;
+      padding-top: 100px;
+      margin-top: -40px;
     }
-    &>:first-child {
-      padding-top: 40px;
-    }
+    // &>:first-child {
+    //   margin-top: -60px;
+    // }
   }
   .areaData {
     .custom_div {

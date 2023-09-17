@@ -86,9 +86,10 @@ export default function Home() {
       <div className={styles.anchor_listMenu}>
         <Anchor
           // affix={false}
+          style={{display: "flex"}}
           bounds={80}
-          offsetTop={0}
-          targetOffset={80}
+          // offsetTop={0}
+          // targetOffset={80}
           direction="horizontal"
           items={dataListMenu.map(({ title, key }) => ({
             title,

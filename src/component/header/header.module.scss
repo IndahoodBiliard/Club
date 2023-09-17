@@ -11,16 +11,24 @@
   position: fixed;
   top: 0;
   left: 0;
-  transition: background 1.2s;
+  // transition: background 1.2s;
   width: 100vw;
   z-index: 999;
   @media only screen and (max-width: 767.5px) {
     padding-inline: $main_padding_mb;
   }
   &.black {
-    background-color: #101110;
-    transform: matrix(1, 0, 0, 1, 0, 0);
-    border-bottom: 1px solid hsla(0, 0%, 59.2%, 0.2);
+    background-color: #000000;
+    // transform: matrix(1, 0, 0, 1, 0, 0);
+    border-bottom: 1px solid hsla(0, 0%, 59.2%, 0.2); 
+    // background-color: rgba(0, 0, 0, 0.5);
+    // transform: matrix(1, 0, 0, 1, 0, 0);
+    // backdrop-filter: blur(10px);
+    // background: linear-gradient(
+    //   180deg,
+    //   rgba(19, 26, 32, 0.7) 0%,
+    //   rgba(19, 26, 32, 0) 100%
+    // );
   }
   &.white {
     background: linear-gradient(
@@ -31,8 +39,8 @@
   }
   .logo {
     z-index: 1001;
-    font-size: 24px;
-    font-family: cursive;
+    // font-size: 24px;
+    // font-family: cursive;
   }
   .burger_btn {
     padding: 0 0 0 2px;

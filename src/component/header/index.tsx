@@ -4,15 +4,21 @@ import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "./header.module.scss";
 import DrawerHeader from "./drawerHeader";
+import Image from "next/image";
+import { usePathname } from 'next/navigation'
 
 type Props = {
   headerType?: "black";
 };
 
 const Header: FC<Props> = ({ headerType }) => {
+  const pathname = usePathname()
+
   const [headerColor, setHeaderColor] = useState<string>(styles.white);
   const [showSearch, setShowSearch] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
+
+console.log(pathname);
 
   const listenScrollEvent = () => {
     if (headerType) {
@@ -30,7 +36,7 @@ const Header: FC<Props> = ({ headerType }) => {
 
   return (
     <header
-      className={[styles.header, headerType ? styles.black : headerColor].join(
+      className={[styles.header, headerType  ? styles.black : headerColor].join(
         " "
       )}
     >
@@ -43,7 +49,7 @@ const Header: FC<Props> = ({ headerType }) => {
         <span></span> <span></span>
       </button>
       <Link href="/" className={styles.logo}>
-        IndaHood
+      <Image src="/Club/logo.png" height={40} width={169}  alt="logo" />
       </Link>
       {/* <SearchButtonMobile/> */}
       s
