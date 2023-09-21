@@ -18,21 +18,21 @@ export const carouselHomePage: CarouselHomePageType[] = [
     src: "/Club/carousel/carousel1.mov",
     subtitle: "INDAHOOD in your area.",
     title: "INDAHOOD  / n / :",
-    desc: "Homiee thích uống gì, chúng tôi bán cái đó.",
+    desc: "Homiee thich uong gi, chung toi ban cai do.",
   },
   {
     id: "2",
     src: "/Club/carousel/carousel2.mov",
     subtitle: "INDAHOOD in your area.",
     title: "I’ll be die,\n Hiphop never die.",
-    desc: "Chúng tôi không chơi HipHop, HipHop chơi chúng tôi.",
+    desc: "Chung toi khong choi HipHop, HipHop choi chung toi.",
   },
   {
     id: "3",
     src: "/Club/carousel/carousel3.mov",
     subtitle: "INDAHOOD in your area.",
     title: "PEACE!",
-    desc: "INDAHOOD không chỉ là INDAHOOD, INDAHOOD là một hệ tư tưởng.",
+    desc: "INDAHOOD khong chi la INDAHOOD, INDAHOOD la mot he tu tuong",
   },
 ];
 
