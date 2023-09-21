@@ -66,11 +66,11 @@ export default function Home() {
       const visibleHeight = scrollContainer.clientHeight as number;
       let itemScroolTo = Math.floor(scrollTop / visibleHeight);
       if (Math.abs(scrollTop - itemScroolTo * visibleHeight) <= 5) {
-        intervalId = setInterval(autoScroll, 8000);
+        intervalId = setInterval(autoScroll, 10000);
         onSetCurrentItemIndex(itemScroolTo);
       }
     }
-    let intervalId = setInterval(autoScroll, 8000);
+    let intervalId = setInterval(autoScroll, 10000);
     scrollContainer?.addEventListener("scroll", handleScroll);
     return () => {
       clearInterval(intervalId);
@@ -87,7 +87,7 @@ export default function Home() {
         } else {
           clearInterval(interval);
         }
-      }, 59);
+      }, 79);
     }
     return () => {
       clearInterval(interval);
