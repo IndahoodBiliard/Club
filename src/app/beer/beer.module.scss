@@ -47,17 +47,19 @@
     //   margin-top: -60px;
     // }
   }
-  .areaData {
-    .custom_div {
-      :global(img) {
-        border-radius: 10px;
-        background-color: #e0e0e0; /* Màu nền tùy chọn */
-        width: 100%; /* Chiều rộng tối đa */
-        object-fit: cover;
+  .listMenu{
+    .areaData {
+      .custom_div {
+        :global(img) {
+          border-radius: 10px;
+          background-color: #e0e0e0; /* Màu nền tùy chọn */
+          width: 100%; /* Chiều rộng tối đa */
+          object-fit: cover;
+        }
       }
-    }
-    .showContent {
-      padding: 10px 0;
+      .showContent {
+        // padding: 10px 0;
+      }
     }
   }
 }
@@ -67,11 +69,24 @@
     :global(.ant-row) {
       gap: 20px;
     }
-    .areaData {
-      display: flex;
-      gap: 24px;
-      .custom_div {
-        width: 40%; /* Chiều rộng tối đa */
+    .listMenu{
+      :global(.ant-divider-inner-text){
+        font-size: 5vw;
+      }
+      .areaData {
+        display: flex;
+        gap: 16px;
+        .custom_div {
+          width: 25vw; /* Chiều rộng tối đa */
+        }
+        .showContent {
+          :global(h3) {
+            font-size: 4vw;
+          }
+          :global(p) {
+            font-size: 3.2vw;
+          }
+        }
       }
     }
     .anchor_listMenu {
