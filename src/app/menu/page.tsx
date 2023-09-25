@@ -1,21 +1,11 @@
 "use client";
 import { dataListMenu, FoodType } from "@/data/defaultData";
-import { Anchor, Card, Col, Divider, Row, Space, Image } from "antd";
-import { useEffect, useRef, useState } from "react";
+import { Anchor, Col, Divider, Row, Image } from "antd";
+import { useEffect, useRef } from "react";
 import styles from "./beer.module.scss";
-// import Image from "next/image";
+import NextNProgress from "nextjs-progressbar";
+
 export default function Home() {
-  const divRef = useRef(null);
-  const [clientWidth, setClientWidth] = useState(0);
-
-  useEffect(() => {
-    if (divRef.current) {
-      const divWidth = (divRef.current as any).clientWidth;
-      setClientWidth(divWidth);
-      console.log("Chiều ngang của div:", divWidth, "px");
-    }
-  }, []);
-
   useEffect(() => {
     const handleScroll = () => {
       const activeLink = document.querySelector(".ant-anchor-link-active");
@@ -51,9 +41,7 @@ export default function Home() {
           >
             {data.title}
           </Divider>
-          <Row gutter={{ xs: 20, sm: 20, md: 24, lg: 32 }}>
-            {renderComponent(data.data)}
-          </Row>
+          <Row gutter={[16, 16]}>{renderComponent(data.data)}</Row>
         </div>
       );
     });
@@ -62,25 +50,22 @@ export default function Home() {
   const renderComponent = (data: FoodType[]) => {
     return data.map((item) => {
       return (
-        <Col key={item.id} xs={24} md={6} className={styles.areaData}>
-          <div ref={divRef} className={styles.custom_div}>
-            {/* <Image
-              // width={'100%'}
-              // height={'40vw'}
-              src={data.src}
-              alt="description of image"
-              style={{ width: "100%", height: "auto" }}
-            /> */}
-            <Image src={item.src} className="image" style={{ width: "100%", height: "100px" }} alt="ALT_TEXT" />
+        <Col key={item.id} xs={24} md={12} className={styles.areaData}>
+          <div className={styles.imageArea}>
+            <Image src={item.src} className="image" alt={item.name} />
           </div>
-          <Space size={10} direction="vertical" className={styles.showContent}>
+          <div className={styles.showContent}>
             <div>
-              <h3>{item.name}</h3>
-              <h3>(&nbsp;{item.subTitle}&nbsp;)</h3>
+              <h3>
+                {item.name}
+                <br />
+                (&nbsp;{item.subTitle}&nbsp;)
+              </h3>
+              {/* <h3>(&nbsp;{item.subTitle}&nbsp;)</h3> */}
             </div>
-            <p>(&nbsp;{item.detail}&nbsp;)</p>
+            <p>{item.detail}</p>
             <div>{item.price}</div>
-          </Space>
+          </div>
         </Col>
       );
     });
@@ -90,11 +75,8 @@ export default function Home() {
     <div className={styles.beer}>
       <div className={styles.anchor_listMenu}>
         <Anchor
-          // affix={false}
           style={{ display: "flex" }}
           bounds={80}
-          // offsetTop={0}
-          // targetOffset={80}
           direction="horizontal"
           items={dataListMenu.map(({ title, key }) => ({
             title,
@@ -104,6 +86,7 @@ export default function Home() {
         />
       </div>
       <div style={{ width: "100%" }} className={styles.dataListMenu}>
+        <NextNProgress options={{ easing: "ease", speed: 500 }} />
         {renderListMenu()}
       </div>
     </div>

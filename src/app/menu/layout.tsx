@@ -4,9 +4,9 @@ interface ListMenu {
 }
 const ListMenuLayout: FC<ListMenu> = ({ children }) => {
   return (
-    <Suspense fallback={<div>dddd</div>}>
-      <main>{children}</main>
-    </Suspense>
+    // <Suspense fallback={<div>dddd</div>}>
+      <>{children}</>
+    // </Suspense>
   );
 };
 

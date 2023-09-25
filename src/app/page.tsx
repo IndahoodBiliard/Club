@@ -124,7 +124,7 @@ export default function Home() {
         className={[styles.loading, !isLoading ? styles.hiden : ""].join(" ")}
       >
         <img src="/Club/logomain.png" alt="logo" />
-        {/* <img src="/Club/loading.gif" alt="My GIF" /> */}
+         {/* <img src="/Club/loading.gif" alt="My GIF" /> */}
       </div>
       <div
         id="scroll_container"

@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface CarouselHomePageType {
   id: string;
   src: string;
@@ -99,23 +101,24 @@ export let signature: FoodType[] = [
 //   bearListData.push(foodItem);
 // }
 
-interface ListMenuProps {
+export interface ListMenuProps {
+  key: string,
   title: string,
   href: string,
-  data: any[]
+  data: FoodType[]
 }
 
-export const dataListMenu = [
+export const dataListMenu: ListMenuProps[] = [
   {
     key: 'signature',
     title: 'Sít nây chờ của quán',
-    href: '/beer',
+    href: '/menu',
     data: signature
   },
   {
     key: 'cocktail',
     title: 'Cocktail mà quán nào cũng có',
-    href: '/beer',
+    href: '/menu',
     data: signature
   },
   // {

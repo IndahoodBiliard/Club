@@ -5,20 +5,19 @@ import Link from "next/link";
 import styles from "./header.module.scss";
 import DrawerHeader from "./drawerHeader";
 import Image from "next/image";
-import { usePathname } from 'next/navigation'
+import { usePathname } from "next/navigation";
 
 type Props = {
   headerType?: "black";
 };
 
 const Header: FC<Props> = ({ headerType }) => {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const [headerColor, setHeaderColor] = useState<string>(styles.white);
-  const [showSearch, setShowSearch] = useState<boolean>(false);
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
 
-console.log(pathname);
+  console.log(pathname);
 
   const listenScrollEvent = () => {
     if (headerType) {
@@ -36,9 +35,10 @@ console.log(pathname);
 
   return (
     <header
-      className={[styles.header, headerType  ? styles.black : headerColor].join(
-        " "
-      )}
+      className={[
+        styles.header,
+        pathname !== "/" ? styles.black : headerColor,
+      ].join(" ")}
     >
       <button
         className={[styles.burger_btn, showDrawer ? styles.close : ""].join(
@@ -48,11 +48,18 @@ console.log(pathname);
       >
         <span></span> <span></span>
       </button>
-      <Link href="/" className={styles.logo}>
-      <Image src="/Club/logo.png" height={40} width={169}  alt="logo" />
+      <Link href="/" className={styles.logo} onClick={()=> setShowDrawer(false)}>
+        <Image src="/Club/logo.png" height={35.6} width={150} alt="logo" />
       </Link>
-      {/* <SearchButtonMobile/> */}
-      s
+      <button
+        className={[styles.burger_btn, showDrawer ? styles.close : ""].join(
+          " "
+        )}
+        style={{ opacity: 0, visibility: "hidden" }}
+        onClick={() => setShowDrawer(!showDrawer)}
+      >
+        <span></span> <span></span>
+      </button>
       <DrawerHeader showDrawer={showDrawer} setShowDrawer={setShowDrawer} />
     </header>
   );

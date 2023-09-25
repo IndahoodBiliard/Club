@@ -41,7 +41,7 @@
   .dataListMenu {
     &>* {
       padding-top: 100px;
-      margin-top: -40px;
+      margin-top: -55px;
     }
     // &>:first-child {
     //   margin-top: -60px;
@@ -49,16 +49,23 @@
   }
   .listMenu{
     .areaData {
-      .custom_div {
-        :global(img) {
-          border-radius: 10px;
-          background-color: #e0e0e0; /* Màu nền tùy chọn */
-          width: 100%; /* Chiều rộng tối đa */
-          object-fit: cover;
+      display: flex;
+      gap: 16px;
+      .imageArea {
+        width: 12vw; /* Chiều rộng tối đa */
+        :global(.ant-image){
+          width: 100%;
+          :global(img) {
+            border-radius: 7px;
+          }
         }
       }
       .showContent {
-        // padding: 10px 0;
+        flex-grow: 1;
+        width: min-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
       }
     }
   }
@@ -66,25 +73,27 @@
 @media only screen and (max-width: 767.5px) {
   .beer {
     padding: $header-height $main_padding_mb $main_padding_mb $main_padding_mb;
-    :global(.ant-row) {
-      gap: 20px;
-    }
     .listMenu{
       :global(.ant-divider-inner-text){
         font-size: 5vw;
       }
       .areaData {
-        display: flex;
-        gap: 16px;
-        .custom_div {
-          width: 25vw; /* Chiều rộng tối đa */
+        // display: flex;
+        // gap: 16px;
+        .imageArea {
+          width: 22vw;
+          :global(img) {
+            width: "100%";
+             height: "27vw";
+             object-fit: "cover"
+          }
         }
         .showContent {
           :global(h3) {
-            font-size: 4vw;
+            font-size: 4.5vw;
           }
           :global(p) {
-            font-size: 3.2vw;
+            font-size: 3vw;
           }
         }
       }
@@ -94,6 +103,11 @@
         display: flex;
         justify-content: center;
         padding-inline: $main_padding_mb;
+      }
+      :global(.ant-anchor-link) {
+        :global(.ant-anchor-link-title) {
+          font-size: 4vw;
+        }
       }
     }
   }

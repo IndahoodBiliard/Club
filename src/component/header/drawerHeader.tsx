@@ -20,7 +20,7 @@ const DrawerHeader: FC<Props> = ({ showDrawer, setShowDrawer }) => {
       <Link
         onClick={() => setShowDrawer(false)}
         key={item.key}
-        href={`/beer#${item.key}`}
+        href={`${item.href}#${item.key}`}
       >
         {item.title}
       </Link>

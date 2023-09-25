@@ -1,11 +1,11 @@
-import { FoodType, bearListData } from '@/data/defaultData'
+import { FoodType, signature } from '@/data/defaultData'
 export async function generateStaticParams() {
-  const posts = bearListData
+  const posts = signature
   return posts.map((post) => ({
     id: post.id,
   }))
 }
 export default function Page({ params }: { params: { id: string} }) {
-  const dataDetail = bearListData.find(data=> data.id = params.id)
+  const dataDetail = signature.find(data=> data.id = params.id)
   return <h1>My Page {params.id} {dataDetail?.name}</h1>
 }
