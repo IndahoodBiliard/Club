@@ -91,6 +91,49 @@ export let signature: FoodType[] = [
   },
 ];
 
+export let cocktail: FoodType[] = [
+  {
+    id: "1",
+    src: '/Club/menu/images.jpg',
+    name: "Whisky Sour",
+    subTitle: "Chua Chua Ít Ngọt",
+    detail: "Whisky, Chanh, Đường, Egg White",
+    price: '12.000d'
+  },
+  {
+    id: "2",
+    src: '/Club/menu/images.jpg',
+    name: "Long island Iced Tea",
+    subTitle:"Trà Đá Xỉn",
+    detail: "Rum, Tequila, Vodka, Gin, Cointreau, Chanh, Coke",
+    price: '12.000d'
+  },
+  {
+    id: "3",
+    src: '/Club/menu/images.jpg',
+    name: "Magarita",
+    subTitle:"Chua Mặn Cùng Chút Ngọt",
+    detail: "Tequila, Cointreau, Chanh, Đường",
+    price: '12.000d'
+  },
+  {
+    id: "4",
+    src: '/Club/menu/images.jpg',
+    name: "Blue Magarita",
+    subTitle: "Như Magarita Nhưng Khác Màu",
+    detail: 'Tequila, Blue Caracao, Chanh, Đường',
+    price: '12.000d'
+  },
+  {
+    id: "5",
+    src: '/Club/menu/images.jpg',
+    name: "Gin Fizz",
+    subTitle: "Giải Khát Có Cồn",
+    detail: 'Gin, Chanh, Đường, Soda',
+    price: '12.000d'
+  },
+];
+
 // for (let i = 1; i <= 10; i++) {
 //   const foodItem: FoodType = {
 //     id: `food${i}`,
@@ -119,7 +162,7 @@ export const dataListMenu: ListMenuProps[] = [
     key: 'cocktail',
     title: 'Cocktail mà quán nào cũng có',
     href: '/menu',
-    data: signature
+    data: cocktail
   },
   // {
   //   key: 'cocktaiils',
