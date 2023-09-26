@@ -14,10 +14,16 @@ export default function Home() {
   const twoColors = { "0%": "#ffff", "100%": "#ffff" };
   //loading 3s
   useEffect(() => {
-    setTimeout(() => {
+    // setTimeout(() => {
+    //   setIsloading(false);
+    //   setProgress(-10);
+    // }, 3000);
+    window.addEventListener("load", () => {
+      // Thực hiện hành động sau khi tải tài nguyên hoàn tất
       setIsloading(false);
       setProgress(-10);
-    }, 3000);
+      console.log('Tất cả tài nguyên đã được tải.');
+    });
   }, []);
 
   const onSetCurrentItemIndex = useCallback(
@@ -103,9 +109,6 @@ export default function Home() {
           aria-hidden="true"
         >
           <video
-            data-v-6b59c062=""
-            data-index="5"
-            data-active="5"
             src={data.src}
             autoPlay={true}
             loop={true}
@@ -124,7 +127,7 @@ export default function Home() {
         className={[styles.loading, !isLoading ? styles.hiden : ""].join(" ")}
       >
         <img src="/Club/logomain.png" alt="logo" />
-         {/* <img src="/Club/loading.gif" alt="My GIF" /> */}
+        {/* <img src="/Club/loading.gif" alt="My GIF" /> */}
       </div>
       <div
         id="scroll_container"
