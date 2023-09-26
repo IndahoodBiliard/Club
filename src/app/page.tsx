@@ -14,16 +14,10 @@ export default function Home() {
   const twoColors = { "0%": "#ffff", "100%": "#ffff" };
   //loading 3s
   useEffect(() => {
-    // setTimeout(() => {
-    //   setIsloading(false);
-    //   setProgress(-10);
-    // }, 3000);
-    window.addEventListener("load", () => {
-      // Thực hiện hành động sau khi tải tài nguyên hoàn tất
+    setTimeout(() => {
       setIsloading(false);
       setProgress(-10);
-      console.log('Tất cả tài nguyên đã được tải.');
-    });
+    }, 3000);
   }, []);
 
   const onSetCurrentItemIndex = useCallback(

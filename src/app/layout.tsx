@@ -5,7 +5,7 @@ import Header from "@/component/header";
 import { Inter } from "next/font/google";
 import styles from "./mainUI.module.scss";
 import StyledComponentsRegistry from "../lib/AntdRegistry";
-
+import Loading from "./loading";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,13 +24,13 @@ export default function RootLayout({
         className={[inter.className, styles.main_ui].join(" ")}
         suppressHydrationWarning={true}
       >
-          {/* <NextNProgress options={{ easing: 'ease', speed: 500 }} /> */}
-        {/* <Suspense> */}
+        <Suspense>
           <Header />
-        {/* </Suspense> */}
-        <main className={styles.main}>
-          <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
-        </main>
+          <main className={styles.main}>
+            <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+          </main>
+        </Suspense>
+        <Loading/>
       </body>
     </html>
   );

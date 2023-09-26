@@ -1,19 +1,21 @@
 @import "../style/defaultVariable.scss";
 .home_page {
   margin-top: -$header-height;
-  height: 100vh;
+  height: 100svh;
   overflow-y: scroll;
   position: relative;
   scroll-snap-type: y mandatory;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   &::-webkit-scrollbar {
     display: none;
   }
 }
 .loading {
   position: fixed;
-  height: 100vh;
+  height: 100svh;
+  overflow-y: scroll;
+  inset: 0;
   width: 100vw;
   left: 0;
   top: 0;
@@ -45,11 +47,11 @@
   transition: opacity 0.5s ease; /* Add a transition for opacity */
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   transform: matrix(1, 0, 0, 1, 0, 0);
   :global(video) {
-    min-height: 102vh;
+    min-height: 102svh;
     min-width: 100vw;
     position: absolute;
     opacity: 0.8;
@@ -59,7 +61,7 @@
   }
 }
 
-.Content{
+.Content {
   position: fixed;
   bottom: 54px;
   left: 0;
@@ -71,7 +73,7 @@
   .hone_text {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: .1s;
+    transition-delay: 0.1s;
     transition: opacity 0.4s ease-in; /* Add a transition for opacity */
     transition: all 0.4s;
     &.fade-in-animation {
@@ -107,17 +109,17 @@
 }
 
 @media only screen and (max-width: 768.5px) {
-  .Content{
+  .Content {
     padding-inline: 14px;
     .home__subtitle {
-      font-size: 14px
+      font-size: 14px;
     }
     .home__title {
       width: 100%;
-      font-size: 40px
+      font-size: 40px;
     }
     .home__desc {
-      font-size: 20px
+      font-size: 20px;
     }
   }
   .buttonDown {

@@ -2,21 +2,19 @@
 import { Anchor, Col, Divider, Row, Image, Button } from "antd";
 import { useEffect } from "react";
 import styles from "./beer.module.scss";
-import NextNProgress from "nextjs-progressbar";
 import React from "react";
 import { FoodType, dataListMenu } from "@/data/defaultData";
 
 export default function Menu() {
   useEffect(() => {
     const hash = window.location.hash;
-    console.log(hash);
     if (hash) {
       const link = document.createElement("a");
       link.href = `${hash}`;
       document.body.appendChild(link)
       setTimeout(() => {
         link.click()
-      }, 10);
+      }, 500);
     }
   }, []);
 
@@ -87,7 +85,7 @@ export default function Menu() {
       return (
         <Col key={item.id} xs={24} md={12} className={styles.areaData}>
           <div className={styles.imageArea}>
-            <Image src={item.src} className="image" alt={item.name} />
+            <Image src={item.src} className="image" alt={item.name} loading="lazy"/>
           </div>
           <div className={styles.showContent}>
             <div>
@@ -121,7 +119,6 @@ export default function Menu() {
         />
       </div>
       <div style={{ width: "100%" }} className={styles.dataListMenu}>
-        <NextNProgress options={{ easing: "ease", speed: 500 }} />
         {renderListMenu()}
       </div>
     </div>
