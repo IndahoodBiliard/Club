@@ -1,11 +1,46 @@
 "use client";
-import { dataListMenu, FoodType } from "@/data/defaultData";
-import { Anchor, Col, Divider, Row, Image } from "antd";
-import { useEffect, useRef } from "react";
+import { Anchor, Col, Divider, Row, Image, Button } from "antd";
+import { useEffect } from "react";
 import styles from "./beer.module.scss";
 import NextNProgress from "nextjs-progressbar";
+import React from "react";
+import { FoodType, dataListMenu } from "@/data/defaultData";
 
-export default function Home() {
+export const MyMenu: React.FC = () => {
+  useEffect(() => {
+    const hash = window.location.hash;
+    console.log(hash);
+    if (hash) {
+      const link = document.createElement("a");
+      link.href = `${hash}`;
+      document.body.appendChild(link)
+      setTimeout(() => {
+        link.click()
+      }, 10);
+    }
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const activeLink = document.querySelector(".ant-anchor-link-active");
+      const container = document.querySelector(".ant-anchor");
+      if (activeLink && container) {
+        const containerWidth = container.clientWidth;
+        const activeLinkOffset = (activeLink as any).offsetLeft;
+        const activeLinkWidth = activeLink.clientWidth;
+        container.scrollTo({
+          left: activeLinkOffset - (containerWidth - activeLinkWidth) / 2,
+          behavior: "smooth",
+        });
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       const activeLink = document.querySelector(".ant-anchor-link-active");
@@ -39,7 +74,7 @@ export default function Home() {
               fontSize: 28,
             }}
           >
-            {data.title}
+            {data.name}
           </Divider>
           <Row gutter={[16, 16]}>{renderComponent(data.data)}</Row>
         </div>
@@ -91,4 +126,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default MyMenu;

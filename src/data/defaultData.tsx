@@ -146,6 +146,7 @@ export let cocktail: FoodType[] = [
 
 export interface ListMenuProps {
   key: string,
+  name: string,
   title: string,
   href: string,
   data: FoodType[]
@@ -153,46 +154,53 @@ export interface ListMenuProps {
 
 export const dataListMenu: ListMenuProps[] = [
   {
+    key: 'discount',
+    title: 'Discount',
+    name: 'Discount',
+    href: '/menu',
+    data: signature
+  },
+  {
     key: 'signature',
-    title: 'Sít nây chờ của quán',
+    title: 'Signature',
+    name: 'Sít nây chờ của quán',
+    href: '/menu',
+    data: signature
+  },
+  {
+    key: 'beer',
+    title: 'Beer',
+    name: 'Beer',
     href: '/menu',
     data: signature
   },
   {
     key: 'cocktail',
-    title: 'Cocktail mà quán nào cũng có',
+    title: 'Cocktaiils',
+    name: 'Cocktail mà quán nào cũng có',
     href: '/menu',
     data: cocktail
   },
-  // {
-  //   key: 'cocktaiils',
-  //   title: 'Cocktaiils',
-  //   href: '/cocktaiils',
-  //   data: bearListData
-  // },
-  // {
-  //   key: 'milktea',
-  //   title: 'Milk tea',
-  //   href: '/milktea',
-  //   data: bearListData
-  // },
-  // {
-  //   key: 'food',
-  //   title: 'Food',
-  //   href: '/food',
-  //   data: bearListData
-  // },
-  // {
-  //   key: 'food23',
-  //   title: 'food2',
-  //   href: '/food23',
-  //   data: bearListData
-  // },
-  // {
-  //   key: 'food33',
-  //   title: 'Food22',
-  //   href: '/food33',
-  //   data: bearListData
-  // }
+  {
+    key: 'milktea',
+    title: 'Milk tea',
+    name: 'Milk tea',
+    href: '/menu',
+    data: cocktail
+  },
+  {
+    key: 'gas',
+    title: 'Gas',
+    name: 'Gas',
+    href: '/menu',
+    data: cocktail
+  },
+  {
+    key: 'foods',
+    title: 'Foods',
+    name: 'Foods',
+    href: '/menu',
+    data: cocktail
+  },
 ]
 
