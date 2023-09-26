@@ -6,7 +6,7 @@ import NextNProgress from "nextjs-progressbar";
 import React from "react";
 import { FoodType, dataListMenu } from "@/data/defaultData";
 
-export const MyMenu: React.FC = () => {
+export default function Menu() {
   useEffect(() => {
     const hash = window.location.hash;
     console.log(hash);
@@ -127,5 +127,3 @@ export const MyMenu: React.FC = () => {
     </div>
   );
 };
-
-export default MyMenu;
