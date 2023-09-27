@@ -19,21 +19,21 @@ export interface FoodType {
 export const carouselHomePage: CarouselHomePageType[] = [
   {
     id: "1",
-    src: "/Club/carousel/carousel1.mov",
+    src: "/Club/carousel/carousel1.webm",
     subtitle: "INDAHOOD in your area.",
     title: "INDAHOOD  / n / :",
     desc: "Homiee thich uong gi, chung toi ban cai do.",
   },
   {
     id: "2",
-    src: "/Club/carousel/carousel2.mov",
+    src: "/Club/carousel/carousel2.webm",
     subtitle: "INDAHOOD in your area.",
     title: "I’ll be die,\n Hiphop never die.",
     desc: "Chung toi khong choi HipHop, HipHop choi chung toi.",
   },
   {
     id: "3",
-    src: "/Club/carousel/carousel3.mov",
+    src: "/Club/carousel/carousel3.webm",
     subtitle: "INDAHOOD in your area.",
     title: "PEACE!",
     desc: "INDAHOOD khong chi la INDAHOOD, INDAHOOD la mot he tu tuong",
