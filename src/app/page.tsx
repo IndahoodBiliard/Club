@@ -17,18 +17,35 @@ export default function Home() {
     setTimeout(() => {
       setIsloading(false);
       setProgress(-10);
+      playVideo(0)
     }, 3000);
   }, []);
 
+  const playVideo = (id: number) => {
+    const videoElement =  document.getElementById(`video${id}`)
+    if (videoElement) {
+      (videoElement as any).play();
+    }
+  }
+
+  const pauseVideo = (id: number) => {
+    const videoElement =  document.getElementById(`video${id}`)
+    if (videoElement) {
+      (videoElement as any).pause();
+    }
+  }
+
   const onSetCurrentItemIndex = useCallback(
     (data: number) => {
+      pauseVideo(currentItemIndex)
       !fadeInItemIndex && setFadeInItemIndex(true);
       setTimeout(() => {
         setCurrentItemIndex(data);
+        playVideo(data)
         setFadeInItemIndex(false);
       }, 300);
     },
-    [fadeInItemIndex]
+    [currentItemIndex, fadeInItemIndex]
   );
 
   const goToNextPage = useCallback(
@@ -95,7 +112,7 @@ export default function Home() {
   }, [currentItemIndex, fadeInItemIndex, progress]);
 
   const renderItemCarosel = () => {
-    return carouselHomePage.map((data) => {
+    return carouselHomePage.map((data, index) => {
       return (
         <div
           key={data.id}
@@ -103,11 +120,12 @@ export default function Home() {
           aria-hidden="true"
         >
           <video
+            id={`video${index}`}
             src={data.src}
-            autoPlay={true}
+            // autoPlay={true}
             loop={true}
             muted={true}
-            playsInline={true}
+            // playsInline={true}
           ></video>
         </div>
       );
