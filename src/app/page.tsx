@@ -45,7 +45,7 @@ export default function Home() {
         setFadeInItemIndex(false);
       }, 300);
     },
-    [currentItemIndex, fadeInItemIndex]
+    [fadeInItemIndex, currentItemIndex]
   );
 
   const goToNextPage = useCallback(
@@ -122,10 +122,10 @@ export default function Home() {
           <video
             id={`video${index}`}
             src={data.src}
-            // autoPlay={true}
+            autoPlay={true}
             loop={true}
             muted={true}
-            // playsInline={true}
+            playsInline={true}
           ></video>
         </div>
       );
