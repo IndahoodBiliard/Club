@@ -1,11 +1,12 @@
 "use client";
 import { Anchor, Col, Divider, Row, Image, Button } from "antd";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styles from "./beer.module.scss";
 import React from "react";
 import { FoodType, dataListMenu } from "@/data/defaultData";
 
 export default function Menu() {
+  const [isLoading, setIsloading] = useState<boolean>(true);
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
@@ -14,7 +15,8 @@ export default function Menu() {
       document.body.appendChild(link)
       setTimeout(() => {
         link.click()
-      }, 500);
+        setIsloading(false)
+      }, 1500);
     }
   }, []);
 
@@ -105,7 +107,7 @@ export default function Menu() {
   };
 
   return (
-    <div className={styles.beer}>
+    <div className={[styles.beer, isLoading ? styles.isLoading: ''].join(" ")}>
       <div className={styles.anchor_listMenu}>
         <Anchor
           style={{ display: "flex" }}

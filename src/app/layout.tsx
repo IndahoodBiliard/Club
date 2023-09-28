@@ -24,12 +24,12 @@ export default function RootLayout({
         className={[inter.className, styles.main_ui].join(" ")}
         suppressHydrationWarning={true}
       >
-        <Suspense>
+        {/* <Suspense> */}
           <Header />
           <main className={styles.main}>
             <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
           </main>
-        </Suspense>
+        {/* </Suspense> */}
         <Loading/>
       </body>
     </html>
