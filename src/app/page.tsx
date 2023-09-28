@@ -14,41 +14,44 @@ export default function Home() {
   const twoColors = { "0%": "#ffff", "100%": "#ffff" };
   //loading 3s
   useEffect(() => {
+    var video = document.getElementById("video0") as any;
     setTimeout(() => {
-      setIsloading(false);
+      if (video.readyState === 4) {
+        setIsloading(false);
+      }
       // window.addEventListener('load', () => {
       //   // Trang đã tải hoàn tất
       //   setIsloading(false);
       // });
       setProgress(-10);
-      playVideo(0)
+      playVideo(0);
     }, 3000);
     return () => {
-      window.removeEventListener('load', () => {});
-    }
+      window.removeEventListener("load", () => {});
+    };
   }, []);
 
   const playVideo = (id: number) => {
-    const videoElement =  document.getElementById(`video${id}`)
+    const videoElement = document.getElementById(`video${id}`);
     if (videoElement) {
       (videoElement as any).play();
     }
-  }
+  };
 
   const pauseVideo = (id: number) => {
-    const videoElement =  document.getElementById(`video${id}`)
+    const videoElement = document.getElementById(`video${id}`);
     if (videoElement) {
       (videoElement as any).pause();
     }
-  }
+  };
 
   const onSetCurrentItemIndex = useCallback(
     (data: number) => {
-      pauseVideo(currentItemIndex)
+      pauseVideo(currentItemIndex);
       !fadeInItemIndex && setFadeInItemIndex(true);
       setTimeout(() => {
         setCurrentItemIndex(data);
-        playVideo(data)
+        playVideo(data);
         setFadeInItemIndex(false);
       }, 300);
     },
