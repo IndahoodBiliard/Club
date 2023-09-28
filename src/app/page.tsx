@@ -129,7 +129,7 @@ export default function Home() {
           <video
             id={`video${index}`}
             src={data.src}
-            autoPlay={true}
+            // autoPlay={true}
             loop={true}
             muted={true}
             playsInline={true}
