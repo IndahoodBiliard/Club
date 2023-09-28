@@ -15,11 +15,11 @@ export default function Home() {
   //loading 3s
   useEffect(() => {
     setTimeout(() => {
-      // setIsloading(false);
-      window.addEventListener('load', () => {
-        // Trang đã tải hoàn tất
-        setIsloading(false);
-      });
+      setIsloading(false);
+      // window.addEventListener('load', () => {
+      //   // Trang đã tải hoàn tất
+      //   setIsloading(false);
+      // });
       setProgress(-10);
       playVideo(0)
     }, 3000);
