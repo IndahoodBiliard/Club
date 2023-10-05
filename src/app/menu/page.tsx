@@ -82,6 +82,12 @@ export default function Menu() {
     });
   };
 
+  const renderSubTitle = (data?: string) => {
+    if (data) {
+      return <>(&nbsp;{data}&nbsp;)</>
+    } return <></>
+  }
+
   const renderComponent = (data: FoodType[]) => {
     return data.map((item) => {
       return (
@@ -94,7 +100,7 @@ export default function Menu() {
               <h3>
                 {item.name}
                 <br />
-                (&nbsp;{item.subTitle}&nbsp;)
+                {renderSubTitle(item.subTitle)}
               </h3>
               {/* <h3>(&nbsp;{item.subTitle}&nbsp;)</h3> */}
             </div>
